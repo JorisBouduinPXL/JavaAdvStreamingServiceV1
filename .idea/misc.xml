@@ -7,5 +7,9 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="openjdk-15" project-jdk-type="JavaSDK" />
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" project-jdk-name="13.0.2" project-jdk-type="JavaSDK" />
+>>>>>>> origin/master
 </project>
