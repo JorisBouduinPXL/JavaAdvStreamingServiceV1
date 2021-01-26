@@ -2,8 +2,10 @@ package be.pxl.ja.streamingservice.model;
 
 public interface Playable {
 
-	int getDuration();
-	void play();
-	void pause();
+    int getDuration();
+
+    void play();
+
+    void pause();
 
 }

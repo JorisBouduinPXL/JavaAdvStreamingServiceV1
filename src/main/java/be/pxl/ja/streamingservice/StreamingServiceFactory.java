@@ -1,10 +1,20 @@
 package be.pxl.ja.streamingservice;
 
-public class StreamingServiceFactory {
-	private static StreamingService streamingService = new StreamingService();
+import be.pxl.ja.streamingservice.exception.DuplicateEmailException;
 
-	public static StreamingService getStreamingService() {
-		return streamingService;
-	}
+public class StreamingServiceFactory {
+    private static StreamingService streamingService;
+
+    static {
+        try {
+            streamingService = new StreamingService();
+        } catch (DuplicateEmailException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static StreamingService getStreamingService() {
+        return streamingService;
+    }
 
 }

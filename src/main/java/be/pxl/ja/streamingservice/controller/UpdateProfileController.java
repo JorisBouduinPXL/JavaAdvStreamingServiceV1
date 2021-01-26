@@ -1,5 +1,7 @@
 package be.pxl.ja.streamingservice.controller;
 
+import be.pxl.ja.streamingservice.account.Profile;
+import be.pxl.ja.streamingservice.exception.InvalidDateException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -13,37 +15,37 @@ import java.time.LocalDate;
 
 public class UpdateProfileController {
 
-	@FXML
-	private DatePicker dateOfBirthDatePicker;
+    @FXML
+    private DatePicker dateOfBirthDatePicker;
 
-	@FXML
-	private JFXTextField profileTextField;
+    @FXML
+    private JFXTextField profileTextField;
 
-	@FXML
-	private ImageView profileImage;
+    @FXML
+    private ImageView profileImage;
 
-	private Profile profile;
+    private Profile profile;
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-		profileImage.setImage(new Image("streamingservice/images/" + profile.getAvatar() + ".png"));
-		profileTextField.setText(profile.getName());
-		dateOfBirthDatePicker.setValue(profile.getDateOfBirth());
-	}
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+        profileImage.setImage(new Image("streamingservice/images/" + profile.getAvatar() + ".png"));
+        profileTextField.setText(profile.getName());
+        dateOfBirthDatePicker.setValue(profile.getDateOfBirth());
+    }
 
-	public void onUpdate(ActionEvent actionEvent) {
-		profile.setName(profileTextField.getText());
-		try {
-			LocalDate dob = dateOfBirthDatePicker.getValue();
-			if (dob == null) {
-				throw new IllegalArgumentException("Date of birth required.");
-			}
-			profile.setDateOfBirth(dob);
+    public void onUpdate(ActionEvent actionEvent) {
+        profile.setName(profileTextField.getText());
+        try {
+            LocalDate dob = dateOfBirthDatePicker.getValue();
+            if (dob == null) {
+                throw new IllegalArgumentException("Date of birth required.");
+            }
+            profile.setDateOfBirth(dob);
 
-			Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
-			stage.close();
-		} catch (IllegalArgumentException | InvalidDateException e) {
-			ErrorHandler.showError(e);
-		}
-	}
+            Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+        } catch (IllegalArgumentException | InvalidDateException e) {
+            ErrorHandler.showError(e);
+        }
+    }
 }
