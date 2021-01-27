@@ -56,6 +56,9 @@ public class Movie extends Content implements Playable {
         int hours = duration / 60;
         int minutes = duration % 60;
         StringBuilder result = new StringBuilder();
+        if (duration == 0){
+            return "?";
+        }
         if (hours > 0) {
             result.append(hours).append(" u ");
         }
