@@ -49,7 +49,7 @@ public class Movie extends Content implements Playable {
     }
 
     public boolean isLongPlayingTime() {
-        return duration > LONG_PLAYING_TIME;
+        return duration >= LONG_PLAYING_TIME;
     }
 
     public String getPlayingTime() {
