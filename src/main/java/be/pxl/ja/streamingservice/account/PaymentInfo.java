@@ -10,6 +10,17 @@ public class PaymentInfo {
     private CreditCardNumber cardNumber;
     private LocalDate expirationDate;
 
+    public PaymentInfo(String firstName, String lastName, int day, int month, int year){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        LocalDate expDate = LocalDate.of(year,month,day);
+        setExpirationDate(expDate);
+    }
+
+    public PaymentInfo() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -31,7 +42,7 @@ public class PaymentInfo {
     }
 
     public void setExpirationDate(LocalDate expirationDate) {
-        if (expirationDate.isAfter(LocalDate.now().minusMonths(1))) {
+        if (expirationDate.isBefore(LocalDate.now().plusMonths(1))) {
             throw new InvalidDateException(expirationDate);
         }
         this.expirationDate = expirationDate;
