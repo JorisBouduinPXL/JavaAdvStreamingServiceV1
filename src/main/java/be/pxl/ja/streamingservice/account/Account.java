@@ -15,16 +15,13 @@ public class Account {
     private StreamingPlan streamingPlan;
     private List<Profile> profiles = new ArrayList<>();
 
+
     public Account(String email, String password) {
         if (email != null & password != null) {
+            setPassword(password);
             if (email.contains("@"))
                 this.email = email;
             else {
-                throw new IllegalArgumentException();
-            }
-            if (password.length() == 5) {
-                this.password = password;
-            } else {
                 throw new IllegalArgumentException();
             }
             this.profiles.add(new Profile("Profile1"));
