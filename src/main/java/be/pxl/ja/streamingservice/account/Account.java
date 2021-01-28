@@ -64,11 +64,10 @@ public class Account {
     }
 
     public void setPassword(String password) {
-        try {
-            this.password = PasswordUtil.encodePassword(password);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        if (PasswordUtil.calculateStrength(password)<MINIMUM_PASSWORD_STRENGTH){
+            throw new IllegalArgumentException("Password must at least have strength "+ MINIMUM_PASSWORD_STRENGTH);
         }
+        this.password = PasswordUtil.encodePassword(password);
     }
 
     public Profile getFirstProfile() {
